@@ -17,7 +17,7 @@
     "/agenda": {
       "get": {
         "summary": "一覧を取得",
-        "description": "議題の一覧を取得\n",
+        "description": "議題の一覧を取得",
         "parameters": [],
         "tags": [
           "agendas"
@@ -28,32 +28,23 @@
             "schema": {
               "type": "object",
               "properties": {
-                "status": {
-                  "type": "string",
-                  "example": "200"
-                },
-                "message": {
-                  "type": "string",
-                  "example": "succsess"
-                },
                 "content": {
                   "type": "string",
                   "example": [
                     {
-                      "ajenda_id": "議題管理ID",
+                      "agenda_id": "議題管理ID",
                       "title": "議題タイトル",
-                      "detail": "議題内容",
-                      "agenda_date": "議題日時"
+                      "detail": "議題内容"
                     },
                     {
-                      "ajenda_id": "議題管理ID",
-                      "detail": "議題内容",
-                      "agenda_date": "議題日時"
+                      "agenda_id": "議題管理ID",
+                      "title": "議題タイトル",
+                      "detail": "議題内容"
                     },
                     {
-                      "ajenda_id": "議題管理ID",
-                      "detail": "議題内容",
-                      "agenda_date": "議題日時"
+                      "agenda_id": "議題管理ID",
+                      "title": "議題タイトル",
+                      "detail": "議題内容"
                     }
                   ]
                 }
@@ -68,28 +59,25 @@
         ],
         "summary": "議題を登録",
         "description": "",
-        "operationId": "registAgenda",
+        "operationId": "registerAgenda",
         "parameters": [
           {
-            "name": "title",
-            "type": "string",
-            "in": "query",
-            "description": "議題タイトル",
-            "required": true
-          },
-          {
-            "name": "detail",
-            "type": "string",
-            "in": "query",
-            "description": "議題内容",
-            "required": true
-          },
-          {
-            "name": "agenda_date",
-            "type": "string",
-            "in": "query",
-            "description": "議題日時",
-            "required": true
+            "name": "body",
+            "in": "body",
+            "required": true,
+            "schema": {
+              "type": "object",
+              "properties": {
+                "title": {
+                  "type": "string",
+                  "example": "title"
+                },
+                "detail": {
+                  "type": "string",
+                  "example": "detail"
+                }
+              }
+            }
           }
         ],
         "responses": {
@@ -98,14 +86,6 @@
             "schema": {
               "type": "object",
               "properties": {
-                "status": {
-                  "type": "string",
-                  "example": "200"
-                },
-                "message": {
-                  "type": "string",
-                  "example": "succsess"
-                },
                 "agenda_Id": {
                   "type": "string",
                   "example": "管理ID"
@@ -116,45 +96,38 @@
         }
       }
     },
-    "/agenda/{agendaId}": {
+    "/agenda/{agenda_id}": {
       "get": {
-        "summary": "一覧を取得",
-        "description": "議題の一覧を取得\n",
-        "parameters": {
-          "in": "path",
-          "name": "agendaId",
-          "schema": {
+        "summary": "取得",
+        "description": "議題を取得",
+        "parameters": [
+          {
+            "name": "agenda_id",
+            "in": "path",
+            "required": true,
             "type": "string"
-          },
-          "required": true
-        },
+          }
+        ],
         "tags": [
           "agenda"
         ],
         "responses": {
           "200": {
-            "description": "議題の一覧を返す",
+            "description": "議題を返す",
             "schema": {
               "type": "object",
               "properties": {
-                "status": {
+                "agenda_id": {
                   "type": "string",
-                  "example": "200"
+                  "example": "id"
                 },
-                "message": {
+                "title": {
                   "type": "string",
-                  "example": "succsess"
+                  "example": "title"
                 },
-                "content": {
+                "detail": {
                   "type": "string",
-                  "example": [
-                    {
-                      "ajenda_id": "議題管理ID",
-                      "title": "議題タイトル",
-                      "detail": "議題内容",
-                      "agenda_date": "議題日時"
-                    }
-                  ]
+                  "example": "detail"
                 }
               }
             }
@@ -170,53 +143,33 @@
         "operationId": "putAgenda",
         "parameters": [
           {
-            "name": "agenda_id",
-            "type": "string",
-            "in": "query",
-            "description": "議題ID",
-            "required": true
-          },
-          {
-            "name": "title",
-            "type": "string",
-            "in": "query",
-            "description": "議題タイトル",
-            "required": true
-          },
-          {
-            "name": "detail",
-            "type": "string",
-            "in": "query",
-            "description": "議題内容",
-            "required": true
-          },
-          {
-            "name": "agenda_date",
-            "type": "string",
-            "in": "query",
-            "description": "議題日時",
-            "required": true
+            "name": "body",
+            "in": "body",
+            "required": true,
+            "schema": {
+              "type": "object",
+              "properties": {
+                "agenda_id": {
+                  "type": "string",
+                  "example": "id"
+                },
+                "title": {
+                  "type": "string",
+                  "example": "title"
+                },
+                "detail": {
+                  "type": "string",
+                  "example": "detail"
+                }
+              }
+            }
           }
         ],
         "responses": {
           "200": {
             "description": "議題内容を更新する",
             "schema": {
-              "type": "object",
-              "properties": {
-                "status": {
-                  "type": "string",
-                  "example": "200"
-                },
-                "message": {
-                  "type": "string",
-                  "example": "succsess"
-                },
-                "agenda_Id": {
-                  "type": "string",
-                  "example": "管理ID"
-                }
-              }
+              "type": "object"
             }
           }
         }
@@ -225,14 +178,14 @@
         "tags": [
           "agenda"
         ],
-        "summary": "議題を更新",
+        "summary": "議題を削除",
         "description": "",
-        "operationId": "delteAgenda",
+        "operationId": "deleteAgenda",
         "parameters": [
           {
             "name": "agenda_id",
             "type": "string",
-            "in": "query",
+            "in": "path",
             "description": "議題ID",
             "required": true
           }
@@ -241,17 +194,7 @@
           "200": {
             "description": "議題を削除",
             "schema": {
-              "type": "object",
-              "properties": {
-                "status": {
-                  "type": "string",
-                  "example": "200"
-                },
-                "message": {
-                  "type": "string",
-                  "example": "succsess"
-                }
-              }
+              "type": "object"
             }
           }
         }
