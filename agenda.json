@@ -1,0 +1,204 @@
+{
+  "swagger": "2.0",
+  "info": {
+    "title": "Agenda Management API",
+    "description": "Move your app forward with the Uber API",
+    "version": "1.0.0"
+  },
+  "host": "Undecided",
+  "schemes": [
+    "https"
+  ],
+  "basePath": "/v1",
+  "produces": [
+    "application/json"
+  ],
+  "paths": {
+    "/agenda": {
+      "get": {
+        "summary": "一覧を取得",
+        "description": "議題の一覧を取得",
+        "parameters": [],
+        "tags": [
+          "agendas"
+        ],
+        "responses": {
+          "200": {
+            "description": "議題の一覧を返す",
+            "schema": {
+              "type": "object",
+              "properties": {
+                "content": {
+                  "type": "string",
+                  "example": [
+                    {
+                      "agenda_id": "議題管理ID",
+                      "title": "議題タイトル",
+                      "detail": "議題内容"
+                    },
+                    {
+                      "agenda_id": "議題管理ID",
+                      "title": "議題タイトル",
+                      "detail": "議題内容"
+                    },
+                    {
+                      "agenda_id": "議題管理ID",
+                      "title": "議題タイトル",
+                      "detail": "議題内容"
+                    }
+                  ]
+                }
+              }
+            }
+          }
+        }
+      },
+      "post": {
+        "tags": [
+          "agendas"
+        ],
+        "summary": "議題を登録",
+        "description": "",
+        "operationId": "registerAgenda",
+        "parameters": [
+          {
+            "name": "body",
+            "in": "body",
+            "required": true,
+            "schema": {
+              "type": "object",
+              "properties": {
+                "title": {
+                  "type": "string",
+                  "example": "title"
+                },
+                "detail": {
+                  "type": "string",
+                  "example": "detail"
+                }
+              }
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "成功",
+            "schema": {
+              "type": "object",
+              "properties": {
+                "agenda_Id": {
+                  "type": "string",
+                  "example": "管理ID"
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/agenda/{agenda_id}": {
+      "get": {
+        "summary": "取得",
+        "description": "議題を取得",
+        "parameters": [
+          {
+            "name": "agenda_id",
+            "in": "path",
+            "required": true,
+            "type": "string"
+          }
+        ],
+        "tags": [
+          "agenda"
+        ],
+        "responses": {
+          "200": {
+            "description": "議題を返す",
+            "schema": {
+              "type": "object",
+              "properties": {
+                "agenda_id": {
+                  "type": "string",
+                  "example": "id"
+                },
+                "title": {
+                  "type": "string",
+                  "example": "title"
+                },
+                "detail": {
+                  "type": "string",
+                  "example": "detail"
+                }
+              }
+            }
+          }
+        }
+      },
+      "put": {
+        "tags": [
+          "agenda"
+        ],
+        "summary": "議題を更新",
+        "description": "",
+        "operationId": "putAgenda",
+        "parameters": [
+          {
+            "name": "body",
+            "in": "body",
+            "required": true,
+            "schema": {
+              "type": "object",
+              "properties": {
+                "agenda_id": {
+                  "type": "string",
+                  "example": "id"
+                },
+                "title": {
+                  "type": "string",
+                  "example": "title"
+                },
+                "detail": {
+                  "type": "string",
+                  "example": "detail"
+                }
+              }
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "議題内容を更新する",
+            "schema": {
+              "type": "object"
+            }
+          }
+        }
+      },
+      "delete": {
+        "tags": [
+          "agenda"
+        ],
+        "summary": "議題を削除",
+        "description": "",
+        "operationId": "deleteAgenda",
+        "parameters": [
+          {
+            "name": "agenda_id",
+            "type": "string",
+            "in": "path",
+            "description": "議題ID",
+            "required": true
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "議題を削除",
+            "schema": {
+              "type": "object"
+            }
+          }
+        }
+      }
+    }
+  }
+}
