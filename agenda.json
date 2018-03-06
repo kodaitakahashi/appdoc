@@ -32,19 +32,19 @@
                   "type": "string",
                   "example": [
                     {
-                      "agenda_id": "議題管理ID",
-                      "title": "議題タイトル",
-                      "detail": "議題内容"
+                      "agenda_id": "1-asvge34ewd4535g",
+                      "title": "会議の進め方",
+                      "detail": "会議の進行などを決める"
                     },
                     {
-                      "agenda_id": "議題管理ID",
-                      "title": "議題タイトル",
-                      "detail": "議題内容"
+                      "agenda_id": "1-vmiornvire3323c",
+                      "title": "資金の使い道",
+                      "detail": "資金の使い道を決める"
                     },
                     {
-                      "agenda_id": "議題管理ID",
-                      "title": "議題タイトル",
-                      "detail": "議題内容"
+                      "agenda_id": "1-dvkjf3kcnion32d",
+                      "title": "卒研について",
+                      "detail": "卒研の詳細"
                     }
                   ]
                 }
@@ -70,11 +70,11 @@
               "properties": {
                 "title": {
                   "type": "string",
-                  "example": "title"
+                  "example": "会議の進め方"
                 },
                 "detail": {
                   "type": "string",
-                  "example": "detail"
+                  "example": "会議の進行などを決める"
                 }
               }
             }
@@ -88,7 +88,7 @@
               "properties": {
                 "agenda_Id": {
                   "type": "string",
-                  "example": "管理ID"
+                  "example": "1-asvge34ewd4535g"
                 }
               }
             }
@@ -143,16 +143,19 @@
         "operationId": "putAgenda",
         "parameters": [
           {
-            "name": "body",
+            "name": "agenda_id",
+            "type": "string",
+            "in": "path",
+            "description": "議題ID",
+            "required": true
+          },
+          {
             "in": "body",
+            "name": "body",
             "required": true,
             "schema": {
               "type": "object",
               "properties": {
-                "agenda_id": {
-                  "type": "string",
-                  "example": "id"
-                },
                 "title": {
                   "type": "string",
                   "example": "title"
